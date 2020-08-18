@@ -75,6 +75,11 @@ class PostController extends AdminController
         $form = new Form(new Post());
 
         $form->text('title', "顾客姓名");
+        $form->string("custID","顾客编号")->rules(function($form){
+            if(!$id=$form->model()->id){
+                return 'unique:users,custID';
+            }
+        });
         $form->multipleImage('ZXimages', "整形图片");
         $form->multipleImage('PFimages', "皮肤图片");
         $form->multipleImage('WCimages', "无创图片");
