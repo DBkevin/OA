@@ -7,7 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use App\Admin\Selectable\Doctors;
+use App\Admin\Selectable\Users;
 
 class PostController extends AdminController
 {
@@ -16,7 +16,7 @@ class PostController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Post';
+    protected $title = '案例中心';
 
     /**
      * Make a grid builder.
@@ -30,7 +30,6 @@ class PostController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('user_id', __('User id'));
         $grid->column('title', __('Title'));
-        $grid->column('custID', __('CustID'));
         $grid->column('ZXimages', __('ZXimages'));
         $grid->column('WCimages', __('WCimages'));
         $grid->column('PFimages', __('PFimages'));
@@ -55,7 +54,6 @@ class PostController extends AdminController
         $show->field('id', __('Id'));
         $show->field('user_id', __('User id'));
         $show->field('title', __('Title'));
-        $show->field('custID', __('CustID'));
         $show->field('ZXimages', __('ZXimages'));
         $show->field('WCimages', __('WCimages'));
         $show->field('PFimages', __('PFimages'));
@@ -76,15 +74,12 @@ class PostController extends AdminController
     {
         $form = new Form(new Post());
 
-        $form->number('user_id', __('User id'));
-        $form->text('title', __('Title'));
-        $form->text('custID', __('CustID'));
-        $form->textarea('ZXimages', __('ZXimages'));
-        $form->textarea('WCimages', __('WCimages'));
-        $form->textarea('PFimages', __('PFimages'));
-        $form->textarea('KQimages', __('KQimages'));
-        $form->belongsTo('doctor_id',Doctors::class,'对应医生');
-
+        $form->text('title', "顾客姓名");
+        $form->multipleImage('ZXimages', "整形图片");
+        $form->multipleImage('PFimages', "皮肤图片");
+        $form->multipleImage('WCimages', "无创图片");
+        $form->multipleImage('KQimages', "口腔图片");
+        $form->belongsTo('user_id',Users::class,'对应咨询');
         return $form;
     }
 }
