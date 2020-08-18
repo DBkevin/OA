@@ -30,8 +30,9 @@ class RemoveEmailToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string("email")->change();
-            $table->unique("users_email_unique");
+            $table->string("email")->nullable(false)->change()->commen("取消允许空");
+            $table->unique("email");
+            $table->dropUnique('users_phone_unique');
             $table->dropColumn('phone');
         });
     }
