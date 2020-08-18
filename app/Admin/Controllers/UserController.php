@@ -61,12 +61,12 @@ class UserController extends AdminController
         $form->text('name', "名字")->rules("required");
         $form->mobile('phone','电话号码/登陆名')->rules(function($form){
             if(!$id=$form->model()->id){
-                return 'unique:users,min:11';
+                return 'unique:users,phone|regex:/^1[3456789][0-9]{9}$/|min:11';
             }
         });
         $form->password('password', "输入密码")->rules(function($form){
             if(!$id=$form->model()->id){
-                return 'required,min:8,max:20';
+                return 'required|min:8|max:20';
             }
             return 'min:8';
         });
