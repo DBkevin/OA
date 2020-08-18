@@ -17,5 +17,6 @@ Route::group([
     $router->resource('doctors', DoctorControlle::class,[
         'except'=>['destroy','show']
     ]);
-     $router->resource('users', UserController::class); //用户-->咨询
+   $router->resource('users', UserController::class); //用户-->咨询
+   $router->resource('posts', PostController::class); //文章-->案例
 });
