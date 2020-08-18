@@ -1,5 +1,5 @@
 <?php
-
+use Encore\Admin\Admin;
 /**
  * Laravel-admin - admin builder based on Laravel.
  * @author z-song <https://github.com/z-song>
@@ -19,3 +19,6 @@
  */
 
 Encore\Admin\Form::forget(['map', 'editor']);
+Admin::script("
+    $('.main-footer  strong:eq(2)').text('Powered by 厦门美莱');
+");

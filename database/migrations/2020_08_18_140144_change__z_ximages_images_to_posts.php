@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlertDoctorsTable extends Migration
+class ChangeZXimagesImagesToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AlertDoctorsTable extends Migration
      */
     public function up()
     {
-        Schema::table('doctors', function (Blueprint $table) {
-            $table->foreignId('departmernt_id')->constrained()->onDelete("cascade");
+        Schema::table('posts', function (Blueprint $table) {
+            //
+            $table->renameColumn('images','ZXimages');
         });
     }
 
@@ -25,10 +26,9 @@ class AlertDoctorsTable extends Migration
      */
     public function down()
     {
-        Schema::table('doctors', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             //
-            $table->dropForeign("doctors_departmernt_id_foreign");
-            $table->dropColumn("departmernt_id");
+            $table->renameColumn('ZXimages','images');
         });
     }
 }
