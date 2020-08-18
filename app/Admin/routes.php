@@ -12,5 +12,5 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
-
+    $router->resource('departmernts', DepartmerntController::class); //科室
 });
